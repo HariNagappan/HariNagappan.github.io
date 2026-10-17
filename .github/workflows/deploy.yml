@@ -30,6 +30,9 @@ jobs:
           if [[ "$REPO" == *.github.io ]]; then BASE="/"; else BASE="/$REPO/"; fi
           echo "Using base path: $BASE"
           VITE_BASE="$BASE" npm run build
+          if [ -f CNAME ]; then
+            cp CNAME dist/CNAME
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
